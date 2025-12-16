@@ -22,7 +22,6 @@ This document summarizes observations made while evaluating Chatterbox-TTS-Exten
 ---
 
 ## Strengths
-
 - High degree of customization (voice, pitch, speaking rate, etc.)
 - Fast audio generation compared to large generative models
 - Suitable for experimentation and interactive demos
@@ -30,46 +29,67 @@ This document summarizes observations made while evaluating Chatterbox-TTS-Exten
 
 ---
 
+## Installation
+
+### Prerequisites
+- **Python:** 3.9 – 3.10 recommended  
+- **Internet connection:** Required  
+- **OS:** Windows / Linux / macOS  
+
+### Setup
+```bash
+# Create virtual environment
+python -m venv cb_env
+
+# Activate environment
+source cb_env/bin/activate        # Linux / macOS
+cb_env\Scripts\activate         # Windows
+```
+
+### Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+> Note: Internet access is required during execution, as the model relies on online resources.
+
+---
+
 ## Observations & Issues
 
 ### 1. Language Misinterpretation (Japanese → Mandarin)
 - Japanese text written in kanji is frequently misinterpreted as **Mandarin Chinese**.
-- Generated speech often contains phonetics resembling Mandarin (e.g., Chinese pronunciations rather than Japanese).
+- Generated speech often contains phonetics resembling Mandarin.
 - This issue persists across multiple input formats.
 
 ---
 
 ### 2. No Strict Language Selection
 - The system does **not provide a strict language lock or manual language switch**.
-- Language detection is automatic and cannot be overridden by the user.
+- Language detection is automatic and cannot be overridden.
 - This makes it unsuitable for scenarios where **language correctness is critical**.
 
 ---
 
 ### 3. Limited Multilingual Training Data
-- Japanese support is **not native** and appears to be weakly supported.
-- The model is not trained or optimized specifically for Japanese phonetics.
+- Japanese support is **not native** and weakly supported.
 - Multilingual handling is inconsistent and unreliable.
 
 ---
 
 ### 4. Internet Dependency
-- The model requires an **active internet connection**.
-- This limits its use in fully offline environments.
-- Network dependency introduces latency and deployment constraints.
+- Requires an **active internet connection**.
+- Not suitable for fully offline environments.
 
 ---
 
 ### 5. Output Quality for Japanese
 - Generated audio for Japanese inputs is **not intelligible**.
-- Speech does not resemble natural or correct Japanese pronunciation.
-- Output quality remains poor even when attempts are made to guide pronunciation.
+- Pronunciation does not resemble natural Japanese speech.
+- Output quality remains poor even when guiding pronunciation.
 
 ---
 
 ## Input Variations Tested
-
-The same Japanese content was tested using three different input strategies:
 
 ### A. Standard Kanji Input
 ```
@@ -90,8 +110,7 @@ The same Japanese content was tested using three different input strategies:
 ```
 
 **Result:**  
-In all three cases, the generated audio failed to correctly recognize the text as Japanese.  
-The output remained non-Japanese and largely unintelligible.
+All variations failed to correctly identify the text as Japanese. The generated audio remained non-Japanese and largely unintelligible.
 
 ---
 
@@ -108,21 +127,11 @@ The output remained non-Japanese and largely unintelligible.
 ---
 
 ## Conclusion
-
 Although Chatterbox-TTS-Extended offers **fast generation and extensive voice customization**, its **lack of strict language control**, **poor Japanese support**, and **frequent misinterpretation of Japanese text as Mandarin** make it unsuitable for Japanese TTS applications.
 
-In particular, it is **not suitable for a predetermined interview automation system**, where:
-- Language correctness is critical
-- Output must be intelligible and consistent
-- Offline or controlled deployment is required
-
-Chatterbox-TTS-Extended may be better suited for:
-- English-centric applications
-- Experimental or demo systems
-- Scenarios where language precision is not critical
+It is **not suitable for a predetermined interview automation system**, where language accuracy, consistency, and deployment control are critical.
 
 ---
 
 ## Summary Statement
-
 > Despite strong customization and performance advantages, Chatterbox-TTS-Extended is not viable for Japanese TTS due to unreliable language detection and unintelligible output.
