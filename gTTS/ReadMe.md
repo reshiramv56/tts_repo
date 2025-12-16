@@ -12,7 +12,7 @@ It is easy to use, language-flexible, and suitable for quick prototyping or simp
 |---------|--------|
 | **Type** | Rule-based / API-driven TTS (non-generative) |
 | **Languages Supported** | Multiple (including English and Japanese) |
-| **Output Format** | MP3 audio |
+| **Output Format** | wav audio |
 | **Latency** | Fast for short and medium-length text |
 | **Hardware Requirement** | CPU only |
 
