@@ -101,10 +101,10 @@ No other parameters or logic were modified.
 
 ## Observations & Issues
 
-### 1. Language Misinterpretation (Japanese → Mandarin)
-- Japanese kanji text is frequently misinterpreted as **Mandarin Chinese**.
-- Generated speech often resembles Mandarin pronunciation.
-- Occurs regardless of input formatting.
+### 1. Language Misinterpretation (Japanese)
+- The model frequently fails to correctly interpret Japanese text written in kanji.
+- Generated speech does not resemble natural or correct Japanese pronunciation.
+- This issue occurs regardless of input formatting or pronunciation guidance.
 
 ---
 
@@ -155,6 +155,18 @@ No other parameters or logic were modified.
 **Result:**  
 All input strategies failed to produce intelligible Japanese output.
 
+
+### D. Full Romaji Input
+```
+Ichi, kyōryoku shiau koto de seika ga deru to kanjiru.
+Ni, yakusoku no jikan ni okureru koto ga ōi.
+```
+
+**Result:**  
+The model is able to generate audio when the input is provided in romaji.  
+However, the pronunciation and prosody are **not natural-sounding Japanese**, and the output quality remains unsuitable for production or interview use.
+
+
 ---
 
 ## Suitability Assessment
@@ -178,4 +190,3 @@ It is therefore **not suitable for a predetermined interview automation system**
 
 ## Summary Statement
 > Chatterbox-TTS-Extended offers strong customization and speed, but due to limited Japanese support and lack of language control, it is not viable for Japanese TTS use cases.
-
