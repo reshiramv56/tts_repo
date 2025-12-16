@@ -6,6 +6,9 @@ It is designed for fast generation and experimentation, making it attractive for
 
 This document summarizes observations made while evaluating Chatterbox-TTS-Extended for **Japanese text-to-speech generation**, particularly in the context of a **predetermined interview automation system**.
 
+**Base repository:** https://github.com/petermg/Chatterbox-TTS-Extended  
+**Modification:** One small compatibility fix was applied to the original codebase. All other files and logic remain unchanged.
+
 ---
 
 ## Key Characteristics
@@ -38,10 +41,7 @@ This document summarizes observations made while evaluating Chatterbox-TTS-Exten
 
 ### Setup
 ```bash
-# Create virtual environment
 python -m venv cb_env
-
-# Activate environment
 source cb_env/bin/activate        # Linux / macOS
 cb_env\Scripts\activate         # Windows
 ```
@@ -50,42 +50,85 @@ cb_env\Scripts\activate         # Windows
 ```bash
 pip install -r requirements.txt
 ```
-> Note: Internet access is required during execution, as the model relies on online resources.
+> Note: Internet access is required during execution.
+
+---
+
+## Code Modification Note
+
+### Change Summary
+A **minor compatibility fix** was applied to the original repository to resolve a runtime error during audio generation.  
+No architectural changes, model changes, or generation logic changes were made.
+
+### Issue Identified
+During audio generation, the application failed with:
+```
+TypeError: ChatterboxTTS.generate() got an unexpected keyword argument 'apply_watermark'
+```
+
+This occurred even though:
+- The Gradio UI launched successfully
+- The model loaded without errors
+
+### Root Cause
+The UI code (`Chatter.py`) passed the parameter `apply_watermark` to:
+- `ChatterboxTTS.generate()`
+- `ChatterboxVC.generate()`
+
+However, the installed backend version:
+```
+chatterbox-tts == 0.1.6
+```
+does **not define or accept** the `apply_watermark` argument.
+
+This API mismatch caused all generation attempts to fail before synthesis.
+
+### Resolution Implemented
+- Removed the unsupported keyword argument:
+  ```python
+  apply_watermark=not disable_watermark
+  ```
+- The removal was applied to:
+  - All `model.generate(...)` calls (TTS)
+  - All `vc_model.generate(...)` calls (Voice Conversion)
+
+No other parameters or logic were modified.
+
+### Modified File
+- `Chatter.py` (updated and added to this repository)
 
 ---
 
 ## Observations & Issues
 
 ### 1. Language Misinterpretation (Japanese → Mandarin)
-- Japanese text written in kanji is frequently misinterpreted as **Mandarin Chinese**.
-- Generated speech often contains phonetics resembling Mandarin.
-- This issue persists across multiple input formats.
+- Japanese kanji text is frequently misinterpreted as **Mandarin Chinese**.
+- Generated speech often resembles Mandarin pronunciation.
+- Occurs regardless of input formatting.
 
 ---
 
 ### 2. No Strict Language Selection
-- The system does **not provide a strict language lock or manual language switch**.
-- Language detection is automatic and cannot be overridden.
-- This makes it unsuitable for scenarios where **language correctness is critical**.
+- No manual language lock or explicit language parameter.
+- Automatic language detection cannot be overridden.
 
 ---
 
 ### 3. Limited Multilingual Training Data
-- Japanese support is **not native** and weakly supported.
+- Japanese support is not native.
 - Multilingual handling is inconsistent and unreliable.
 
 ---
 
 ### 4. Internet Dependency
-- Requires an **active internet connection**.
+- Requires an active internet connection.
 - Not suitable for fully offline environments.
 
 ---
 
 ### 5. Output Quality for Japanese
-- Generated audio for Japanese inputs is **not intelligible**.
-- Pronunciation does not resemble natural Japanese speech.
-- Output quality remains poor even when guiding pronunciation.
+- Generated audio is **not intelligible Japanese**.
+- Guiding pronunciation using kana does not resolve the issue.
 
 ---
 
@@ -110,7 +153,7 @@ pip install -r requirements.txt
 ```
 
 **Result:**  
-All variations failed to correctly identify the text as Japanese. The generated audio remained non-Japanese and largely unintelligible.
+All input strategies failed to produce intelligible Japanese output.
 
 ---
 
@@ -127,11 +170,12 @@ All variations failed to correctly identify the text as Japanese. The generated 
 ---
 
 ## Conclusion
-Although Chatterbox-TTS-Extended offers **fast generation and extensive voice customization**, its **lack of strict language control**, **poor Japanese support**, and **frequent misinterpretation of Japanese text as Mandarin** make it unsuitable for Japanese TTS applications.
+Despite strong customization and fast generation, Chatterbox-TTS-Extended is **not suitable for Japanese TTS** due to unreliable language detection and unintelligible output.
 
-It is **not suitable for a predetermined interview automation system**, where language accuracy, consistency, and deployment control are critical.
+It is therefore **not suitable for a predetermined interview automation system**, where language accuracy and consistency are critical.
 
 ---
 
 ## Summary Statement
-> Despite strong customization and performance advantages, Chatterbox-TTS-Extended is not viable for Japanese TTS due to unreliable language detection and unintelligible output.
+> Chatterbox-TTS-Extended offers strong customization and speed, but due to limited Japanese support and lack of language control, it is not viable for Japanese TTS use cases.
+
