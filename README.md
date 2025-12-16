@@ -89,7 +89,7 @@ The script does **not modify the Bark model itself**, only the execution workflo
 
 ### Environment
 - **Python:** 3.9 – 3.10 recommended
-- **Hardware:** CUDA-enabled GPU strongly recommended
+- **Hardware:** CUDA-enabled GPU strongly recommended, but CPU also works
 
 ### Setup
 ```bash
