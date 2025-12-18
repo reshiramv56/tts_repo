@@ -139,7 +139,7 @@ No other parameters or logic were modified.
 1. 協力し合うことで成果が出ると感じる。
 2. 約束の時間に遅れることが多い。
 ```
-
+**Output file:** `trial_A`
 ### B. Kana-Guided Input
 ```
 1. きょうりょくし合うことで成果が出ると感じる。
