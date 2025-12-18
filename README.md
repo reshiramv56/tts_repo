@@ -59,9 +59,9 @@ Chatterbox-TTS-Extended does not hallucinate, but **fails to correctly interpret
 
 | Criteria | gTTS | Suno Bark | Chatterbox-TTS-Extended |
 |------|------|-----------|--------------------------|
-| CPU Performance | Fast | Extremely slow | Fast |
+| CPU Performance | very Fast | Extremely slow | Fast |
 | GPU Requirement | Not applicable | Strongly recommended | Not required |
-| Avg. Generation Time | Seconds | ~4–5 min per sentence (CPU) | Seconds |
+| Avg. Generation Time | Seconds | ~4–5 min per sentence (CPU) | 1-2 mins |
 | Scalability | High | Low | High |
 
 **Analysis:**  
