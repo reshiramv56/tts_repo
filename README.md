@@ -145,13 +145,13 @@ No other parameters or logic were modified.
 1. きょうりょくし合うことで成果が出ると感じる。
 2. 約束（やくそく）の時間に遅れることが多い。
 ```
-
+**Output file:** `trial_B`
 ### C. Full Kana Input
 ```
 いち、きょうりょくしあうことで せいかがでるとかんじる。
 に、やくそくのじかんに おくれることがおおい。
 ```
-
+**Output file:** `trial_C`
 **Result:**  
 All input strategies failed to produce intelligible Japanese output.
 
@@ -161,7 +161,7 @@ All input strategies failed to produce intelligible Japanese output.
 Ichi, kyōryoku shiau koto de seika ga deru to kanjiru.
 Ni, yakusoku no jikan ni okureru koto ga ōi.
 ```
-
+**Output file:** `trial_D`
 **Result:**  
 The model is able to generate audio when the input is provided in romaji.  
 However, the pronunciation and prosody are **not natural-sounding Japanese**, and the output quality remains unsuitable for production or interview use.
