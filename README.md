@@ -61,13 +61,23 @@ Chatterbox Multilingual delivers **high-quality, natural-sounding speech** when 
 
 The following files were added to support evaluation and batch processing. No changes were made to the Chatterbox model architecture or training code.
 
-### chatterbox_api.py
+### `chatterbox_api.py`
 
-This file loads the Chatterbox Multilingual model once and exposes a simplified `generate_audio()` interface. It supports reference audio for voice conditioning, language selection, and seed-based reproducibility.
+- Loads the Chatterbox Multilingual model once  
+- Exposes a simplified `generate_audio()` interface  
+- Supports:
+  - Reference audio for voice conditioning  
+  - Language selection  
+  - Seed-based reproducibility  
 
-### generate_batch.py
+### `generate_batch.py`
 
-This script reads a `.txt` input file, splits text into spoken-style sentences, generates one WAV file per sentence, skips existing files for restart-safe execution, and merges all generated audio into a single `final.wav`.
+- Reads a `.txt` input file  
+- Splits text into spoken-style sentences  
+- Generates one WAV file per sentence  
+- Skips existing files (restart-safe execution)  
+- Merges all generated audio into a single `final.wav`  
+
 
 ## How to Run
 
