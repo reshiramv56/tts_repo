@@ -33,29 +33,63 @@ This project evaluates Chatterbox Multilingual for **offline, predetermined inte
 ### 1. Audio Quality
 
 - Spoken-style input with phonetic (kana-based) numbering consistently produces **clean, natural-sounding audio**.
-- Written list-style input using Arabic numerals often introduces breathing-like noise during pauses and less stable prosody and rhythm.
+- Written list-style input using Arabic numerals often introduces:
+  - Breathing-like noise during pauses
+  - Less stable prosody and rhythm
 
 Overall, spoken-style formatting yields noticeably higher and more consistent audio quality.
 
+---
+
 ### 2. Hallucination & Content Control
 
-As a fully generative model, Chatterbox may occasionally continue speaking beyond the intended text or produce unintended words or short phrases. For strict, predetermined scripts, this behavior necessitates **post-generation validation and trimming** to ensure the spoken output matches the input text exactly.
+As a fully generative model, Chatterbox may occasionally:
+
+- Continue speaking beyond the intended text  
+- Produce unintended words or short phrases  
+
+For strict, predetermined scripts, this behavior necessitates **post-generation validation and trimming** to ensure the spoken output matches the input text exactly.
+
+---
 
 ### 3. Input Formatting Sensitivity
 
-Chatterbox demonstrates strong sensitivity to input formatting. Spoken-style, continuous sentences with natural punctuation yield the best results, while written lists, symbolic numbering, and excessive line breaks result in poorer output. In practice, input formatting has a greater impact on output quality than parameter tuning alone.
+Chatterbox demonstrates strong sensitivity to input formatting:
+
+- **Best results:** Spoken-style, continuous sentences with natural punctuation  
+- **Poorer results:** Written lists, symbolic numbering, excessive line breaks  
+
+In practice, input formatting has a **greater impact on output quality than parameter tuning alone**.
+
+---
 
 ### 4. Performance & Resource Usage
 
-The model operates on CPU with acceptable performance for batch generation tasks. GPU acceleration significantly improves throughput but is not required. The model is loaded once and reused across all generations.
+- Operates on CPU with acceptable performance for batch generation tasks  
+- GPU acceleration significantly improves throughput but is not required  
+- The model is loaded once and reused across all generations  
+
+---
 
 ### 5. Input Length Behavior
 
-Speaking pace gradually increases as input length grows. This effect is caused by global prosody planning in single-pass generative TTS. Long-form text benefits from sentence-level chunking to maintain consistent pacing.
+- Speaking pace gradually increases as input length grows  
+- This effect is caused by global prosody planning in single-pass generative TTS  
+- Long-form text benefits from **sentence-level chunking** to maintain consistent pacing  
+
+---
 
 ## Conclusion & Suitability Assessment
 
-Chatterbox Multilingual delivers **high-quality, natural-sounding speech** when used with spoken-style input and reference audio for voice conditioning. Although trailing hallucinated speech and pause-related noise may occur, these issues can be effectively mitigated through sentence-level batch generation, careful input formatting, and post-processing and audio merging logic. Overall, Chatterbox Multilingual is well-suited for offline, predetermined interview systems, provided the generation pipeline enforces structured input and validation.
+Chatterbox Multilingual delivers **high-quality, natural-sounding speech** when used with spoken-style input and reference audio for voice conditioning.
+
+Although trailing hallucinated speech and pause-related noise may occur, these issues can be effectively mitigated through:
+
+- Sentence-level batch generation  
+- Careful input formatting  
+- Post-processing and audio merging logic  
+
+Overall, Chatterbox Multilingual is **well-suited for offline, predetermined interview systems**, provided the generation pipeline enforces structured input and validation.
 
 ## Added / Modified Files
 
